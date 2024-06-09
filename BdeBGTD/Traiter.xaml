@@ -1,0 +1,91 @@
+﻿<Window x:Class="BdeBGTD.Traiter"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BdeBGTD"
+        mc:Ignorable="d"
+        Title="Traiter" Height="260" Width="350"
+        ResizeMode="NoResize">
+
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:Traiter.PoubelleCmd}"
+                        CanExecute="PoubelleCmd_CanExecute"
+                        Executed="PoubelleCmd_Executed"/>
+
+        <CommandBinding Command="{x:Static local:Traiter.PlanifierActionCmd}"
+                        CanExecute="PlanifierActionCmd_CanExecute"
+                        Executed="PlanifierActionCmd_Executed"/>
+
+        <CommandBinding Command="{x:Static local:Traiter.ActionRapideCmd}"
+                        CanExecute="ActionRapideCmd_CanExecute"
+                        Executed="ActionRapide_Executed"/>
+
+        <CommandBinding Command="{x:Static local:Traiter.Retour}"
+                        CanExecute="Retour_CanExecute"
+                        Executed="Retour_Executed"/>
+
+        <CommandBinding Command="{x:Static local:Traiter.IncuberCmd}"
+                        CanExecute="IncuberCmd_CanExecute"
+                        Executed="IncuberCmd_Executed"/>
+
+    </Window.CommandBindings>
+
+
+    <Grid Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Text="Tri de la boîte d'entrées"
+                   FontWeight="Bold"
+                   TextAlignment="Center"
+                   FontSize="20"/>
+
+
+        <Grid Grid.Row="1" Margin="5,0,5,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="85"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox Grid.Column="0"
+                     Margin="2,2,3,2"
+                     Name="NomElementTrie"
+                     BorderBrush="Gray"
+                     Text="{Binding Nom, Mode=TwoWay}"/>
+
+            <Button Grid.Column="1"
+                    Content="Retour"   
+                    VerticalAlignment="Center"
+                    FontSize="10"
+                    Margin="10,0,0,0"
+                    Command="{x:Static local:Traiter.Retour}"/>
+
+
+        </Grid>
+
+        <TextBox Grid.Row="2" Margin="5,20,5,0"
+                x:Name="DescriptionElementTrie" BorderBrush="Gray"
+                 Text="{Binding Description, Mode=TwoWay}"/>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="Incuber" Content="Incuber" Grid.Column="0" Margin="15,10,5,7" FontSize="10" VerticalAlignment="Center" Command="{x:Static local:Traiter.IncuberCmd}"/>
+            <Button x:Name="ActionRapide" Content="Action rapide" Grid.Column="1" Margin="15,10,10,7" FontSize="10" VerticalAlignment="Center" Command="{x:Static local:Traiter.ActionRapideCmd}"/>
+            <Button x:Name="PlanifierAction" Content="Planifier action" Grid.Column="2" Margin="5,10,1,7" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{x:Static local:Traiter.PlanifierActionCmd}"/>
+            <Button x:Name="Poubelle" Content="Poubelle" Grid.Column="3" Margin="15,10,15,7" FontSize="10" Command="{x:Static local:Traiter.PoubelleCmd}"/>
+        </Grid>
+
+    </Grid>
+</Window>

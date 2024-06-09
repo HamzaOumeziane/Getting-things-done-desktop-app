@@ -1,0 +1,101 @@
+﻿<Window x:Class="BdeBGTD.AjoutEntree"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BdeBGTD"
+        mc:Ignorable="d"
+        Title="AjoutEntree" Height="260" Width="350"
+        ResizeMode="NoResize">
+
+    <Window.Resources>
+
+    </Window.Resources>
+
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:AjoutEntree.AjouterEntree}"
+                        CanExecute="AjouterEntree_CanExecute"
+                        Executed="AjouterEntree_Executed"/>
+
+        <CommandBinding Command="{x:Static local:AjoutEntree.AnnulerEntree}"
+                        CanExecute="AnnulerEntree_CanExecute"
+                        Executed="AnnulerEntree_Executed"/>
+    </Window.CommandBindings>
+
+
+    <Grid Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Text="Ajouts à la boîte d'entrées"
+                   FontWeight="Bold"
+                   TextAlignment="Center"
+                   FontSize="20"/>
+
+
+        <Grid Grid.Row="1" Margin="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="85"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0"
+                       Text="Nom de l'élément:"
+                       TextAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="10"/>
+
+            <TextBox Grid.Column="1"
+                     x:Name="TextBoxNomElement"
+                     Margin="2,0,3,0"
+                     Text="{Binding Nom, Mode=TwoWay}"/>
+        </Grid>
+
+        <TextBox Grid.Row="2" Margin="5,5,5,0"
+                 x:Name="DescriptionElement"
+                 Text="{Binding Description, Mode=TwoWay}"/>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="Confirmer" Content="Confirmer" Grid.Column="0" Margin="15,7,15,7" FontSize="10" Command="{x:Static local:AjoutEntree.AjouterEntree}"/>
+            <Button x:Name="Annuler" Content="Annuler" Grid.Column="1" Margin="15,7,15,7" FontSize="10" Command="{x:Static local:AjoutEntree.AnnulerEntree}"/>
+        </Grid>
+
+
+
+
+
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+
+            <CheckBox IsChecked="False"
+                      x:Name="CheckboxFenetreOuverte" 
+                      Width="15"
+                      Margin="2" 
+                      Grid.Column="0"/>
+
+            <TextBlock Text="Garder cette fenêtre ouverte"
+                       Grid.Column="1"
+                       Margin="2"
+                       FontSize="10"/>
+
+        </Grid>
+
+
+    </Grid>
+</Window>
